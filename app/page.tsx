@@ -1,295 +1,232 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CompanyShowcase from "@/components/CompanyShowcase";
+import GroupEcosystem from "@/components/GroupEcosystem";
 import {
-  Menu,
-  X,
-  MapPin,
-  Phone,
-  Home as HomeIcon,
-  Warehouse,
+  Sparkles,
+  ArrowRight,
+  Shield,
   TrendingUp,
-  Building
+  Building,
+  Globe2,
+  CheckCircle2,
+  ExternalLink,
 } from "lucide-react";
 
-// Custom Subsidiary Dual-Tone SVG Icons
-function TechSolutionsIcon() {
-  return (
-    <svg className="h-16 w-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 18L30 8L44 18L28 28L14 18Z" fill="#00A3E0" />
-      <path d="M14 32L30 22L44 32L28 42L14 32Z" fill="#00A3E0" />
-      <path d="M14 46L30 36L44 46L28 56L14 46Z" fill="#142B4D" />
-      <path d="M30 8L48 20L48 44L30 32V8Z" fill="#142B4D" fillOpacity="0.85" />
-    </svg>
-  );
-}
-
-function LogisticsIcon() {
-  return (
-    <svg className="h-16 w-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 24H38V44H8V24Z" fill="#00A3E0" />
-      <path d="M38 28H48L56 36V44H38V28Z" fill="#142B4D" />
-      <circle cx="18" cy="46" r="6" fill="#142B4D" stroke="#ffffff" strokeWidth="2" />
-      <circle cx="46" cy="46" r="6" fill="#142B4D" stroke="#ffffff" strokeWidth="2" />
-      <path d="M12 16L24 16L30 22L18 22L12 16Z" fill="#00A3E0" fillOpacity="0.6" />
-      <path d="M22 10L34 10L40 16L28 16L22 10Z" fill="#00A3E0" fillOpacity="0.4" />
-    </svg>
-  );
-}
-
-function RealEstateIcon() {
-  return (
-    <svg className="h-16 w-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 10L14 26H50L32 10Z" fill="#142B4D" />
-      <path d="M18 26H46V52H18V26Z" fill="#00A3E0" />
-      <path d="M24 32H30V40H24V32Z" fill="#ffffff" />
-      <path d="M34 32H40V40H34V32Z" fill="#ffffff" />
-      <path d="M28 44H36V52H28V44Z" fill="#142B4D" />
-      <path d="M10 52H54V56H10V52Z" fill="#142B4D" />
-    </svg>
-  );
-}
-
-function FinancialIcon() {
-  return (
-    <svg className="h-16 w-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 48L24 34L34 42L52 16" stroke="#00A3E0" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M42 16H52V26" stroke="#00A3E0" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 52H52" stroke="#142B4D" strokeWidth="4" strokeLinecap="round" />
-      <path d="M16 48V38" stroke="#142B4D" strokeWidth="3" strokeLinecap="round" />
-      <path d="M26 48V32" stroke="#142B4D" strokeWidth="3" strokeLinecap="round" />
-      <path d="M36 48V26" stroke="#142B4D" strokeWidth="3" strokeLinecap="round" />
-      <path d="M46 48V20" stroke="#142B4D" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <main className="min-h-screen bg-white text-[#142B4D] font-sans antialiased">
-      {/* 1. HEADER */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
-        <div className="site-container flex h-24 items-center justify-between">
-          {/* Official Brand Logo from /logo.png */}
-          <a href="#" className="flex items-center group py-2">
-            <div className="relative h-16 w-48 sm:w-56">
-              <img
-                src="/logo.jpeg"
-                alt="Kelvann Group Of Companies Nigeria Limited"
-                className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-          </a>
-
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-[13px] font-bold tracking-wider text-[#142B4D]">
-            <a
-              href="#"
-              className="relative text-[#00A3E0] pb-2 border-b-2 border-[#00A3E0]"
-            >
-              HOME
-            </a>
-            <a href="#about-us" className="hover:text-[#00A3E0] transition-colors pb-2">
-              ABOUT US
-            </a>
-            <a href="#our-companies" className="hover:text-[#00A3E0] transition-colors pb-2">
-              OUR COMPANIES
-            </a>
-            <a href="#careers" className="hover:text-[#00A3E0] transition-colors pb-2">
-              CAREERS
-            </a>
-            <a href="#contact" className="hover:text-[#00A3E0] transition-colors pb-2">
-              CONTACT
-            </a>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-md border border-slate-200 p-2 text-[#142B4D] md:hidden"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Nav Menu */}
-        {mobileMenuOpen && (
-          <div className="border-b border-slate-200 bg-white px-6 py-4 md:hidden text-sm font-bold text-[#142B4D] space-y-3 shadow-lg">
-            <a href="#" onClick={() => setMobileMenuOpen(false)} className="block text-[#00A3E0]">
-              HOME
-            </a>
-            <a href="#about-us" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#00A3E0]">
-              ABOUT US
-            </a>
-            <a href="#our-companies" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#00A3E0]">
-              OUR COMPANIES
-            </a>
-            <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#00A3E0]">
-              CAREERS
-            </a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block hover:text-[#00A3E0]">
-              CONTACT
-            </a>
-          </div>
-        )}
-      </header>
+      {/* 1. STICKY ENHANCED NAVBAR WITH OFFICIAL LOGO & ROUTING */}
+      <Navbar currentPath="/" />
 
       {/* 2. HERO SECTION */}
-      <section className="hero-wrapper relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center text-center px-4 py-20">
+      <section className="hero-wrapper relative min-h-[580px] lg:min-h-[660px] flex items-center justify-center text-center px-4 py-24">
         <div className="hero-network-overlay" />
 
         <div className="site-container relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Parent Corporate Enterprise</span>
+          </div>
+
           <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-black uppercase text-white leading-[1.08] tracking-tight drop-shadow-md">
             BUILDING THE FUTURE<br />OF INDUSTRY
           </h1>
 
           <p className="mt-6 max-w-2xl text-base sm:text-xl font-normal text-white/95 leading-relaxed">
-            The Corporate Home of Kelvann Group&apos;s Diveres Subsidiaries
+            The Corporate Home of Kelvann Group&apos;s Diverse Subsidiaries
           </p>
 
-          <a
-            href="#our-companies"
-            className="mt-8 inline-flex items-center gap-3 rounded-md bg-[#00A3E0] hover:bg-[#0090c4] px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:shadow-[#00A3E0]/30 transition-all active:scale-95 cursor-pointer"
-          >
-            <span>EXPLORE OUR BUSINESSES</span>
-            <span aria-hidden="true" className="text-base font-bold">→</span>
-          </a>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/companies"
+              className="inline-flex items-center gap-3 rounded-xl bg-[#00A3E0] hover:bg-[#0090c4] px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-xl hover:shadow-[#00A3E0]/40 transition-all active:scale-95 cursor-pointer group"
+            >
+              <span>EXPLORE OUR BUSINESSES</span>
+              <span aria-hidden="true" className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+
+            <Link
+              href="/companies/kelvann-krystal"
+              className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-6 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all active:scale-95"
+            >
+              <span>DISCOVER KELVANN KRYSTAL</span>
+              <ExternalLink className="h-4 w-4 text-[#00A3E0]" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 3. OUR SUBSIDIARY COMPANIES */}
-      <section id="our-companies" className="bg-white py-20 lg:py-24">
+      {/* 3. GROUP INTRODUCTION (ONE GROUP. A GROWING VISION.) */}
+      <section className="bg-white py-20 lg:py-24 border-b border-slate-100">
         <div className="site-container">
-          <h2 className="text-center text-2xl sm:text-3xl lg:text-[34px] font-black uppercase text-[#142B4D] tracking-tight mb-14">
-            OUR SUBSIDIARY COMPANIES
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Card 1: Kelvann Tech Solutions */}
-            <div className="subsidiary-card flex flex-col items-center text-center p-8 relative">
-              <div className="absolute top-5 left-5 h-8 w-8 rounded bg-[#142B4D] flex items-center justify-center text-white shadow-sm">
-                <HomeIcon className="h-4 w-4" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#00a6e0]">
+                <span>About Kelvann Group</span>
               </div>
 
-              <div className="h-20 flex items-center justify-center mt-2 mb-4">
-                <TechSolutionsIcon />
-              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#142B4D] tracking-tight leading-[1.15]">
+                ONE GROUP.<br />
+                <span className="text-[#00a6e0]">A GROWING VISION.</span>
+              </h2>
 
-              <h3 className="text-xl font-black text-[#142B4D] leading-snug">
-                Kelvann Tech<br />Solutions
-              </h3>
-
-              <p className="mt-4 text-xs sm:text-[13px] leading-relaxed text-[#556980] flex-1">
-                The Corporate Arm of Kelvann Group. It drives innovation, technology, and digital solutions for a smarter and more connected future.
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Kelvann Group of Companies Nigeria Limited serves as the parent corporate organization, providing strategic leadership, long-term stewardship, and governance across diverse operational initiatives.
               </p>
 
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase text-[#00A3E0] hover:text-[#142B4D] transition-colors"
-              >
-                <span>LEARN MORE</span>
-                <span aria-hidden="true">→</span>
-              </a>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Structured for sustainable scalability, the Group advances through dedicated subsidiaries—anchored by our premier operating company, <strong>Kelvann Krystal Limited</strong>—while preparing systematic expansion into future high-impact sectors.
+              </p>
+
+              <div className="pt-2 flex items-center gap-6">
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black text-[#142B4D]">01</div>
+                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Active Subsidiary</div>
+                </div>
+                <div className="h-10 w-px bg-slate-200" />
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black text-[#00a6e0]">3+</div>
+                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Expansion Verticals</div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link
+                  href="/about-us"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#00a6e0] hover:text-[#142B4D] transition-colors"
+                >
+                  <span>Learn More About Our Leadership &amp; Vision</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
 
-            {/* Card 2: Kelvann Logistics & Supply Chain */}
-            <div className="subsidiary-card flex flex-col items-center text-center p-8 relative">
-              <div className="absolute top-5 left-5 h-8 w-8 rounded bg-[#142B4D] flex items-center justify-center text-white shadow-sm">
-                <Warehouse className="h-4 w-4" />
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 rounded-2xl bg-[#f0f5fa] border border-slate-200/80 space-y-3">
+                <Shield className="h-8 w-8 text-[#00a6e0]" />
+                <h3 className="text-base font-black text-[#142B4D]">Strategic Governance</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Disciplined parent company oversight ensuring operational integrity, compliance, and enterprise resilience.
+                </p>
               </div>
 
-              <div className="h-20 flex items-center justify-center mt-2 mb-4">
-                <LogisticsIcon />
+              <div className="p-6 rounded-2xl bg-[#f0f5fa] border border-slate-200/80 space-y-3">
+                <TrendingUp className="h-8 w-8 text-[#00a6e0]" />
+                <h3 className="text-base font-black text-[#142B4D]">Scalable Expansion</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Strategic growth blueprints positioned to capture emerging industrial and commercial opportunities.
+                </p>
               </div>
 
-              <h3 className="text-xl font-black text-[#142B4D] leading-snug">
-                Kelvann Logistics &amp;<br />Supply Chain
-              </h3>
-
-              <p className="mt-4 text-xs sm:text-[13px] leading-relaxed text-[#556980] flex-1">
-                The Corporate Arm of Kelvann Group. We deliver efficient, reliable, and secure logistics and supply chain solutions across industries.
-              </p>
-
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase text-[#00A3E0] hover:text-[#142B4D] transition-colors"
-              >
-                <span>LEARN MORE</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-
-            {/* Card 3: Kelvann Real Estate */}
-            <div className="subsidiary-card flex flex-col items-center text-center p-8 relative">
-              <div className="absolute top-5 left-5 h-8 w-8 rounded bg-[#142B4D] flex items-center justify-center text-white shadow-sm">
-                <Building className="h-4 w-4" />
+              <div className="p-6 rounded-2xl bg-[#f0f5fa] border border-slate-200/80 space-y-3">
+                <Building className="h-8 w-8 text-[#00a6e0]" />
+                <h3 className="text-base font-black text-[#142B4D]">Operating Excellence</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Delivering high-caliber execution through specialized, mission-aligned subsidiary companies.
+                </p>
               </div>
 
-              <div className="h-20 flex items-center justify-center mt-2 mb-4">
-                <RealEstateIcon />
+              <div className="p-6 rounded-2xl bg-[#f0f5fa] border border-slate-200/80 space-y-3">
+                <Globe2 className="h-8 w-8 text-[#00a6e0]" />
+                <h3 className="text-base font-black text-[#142B4D]">Sustainable Impact</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Creating enduring value for clients, stakeholders, and communities across Nigeria.
+                </p>
               </div>
-
-              <h3 className="text-xl font-black text-[#142B4D] leading-snug">
-                Kelvann<br />Real Estate
-              </h3>
-
-              <p className="mt-4 text-xs sm:text-[13px] leading-relaxed text-[#556980] flex-1">
-                The Corporate Arm of Kelvann Group. We create value through premium real estate development, property management, and investment opportunities.
-              </p>
-
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase text-[#00A3E0] hover:text-[#142B4D] transition-colors"
-              >
-                <span>LEARN MORE</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-
-            {/* Card 4: Kelvann Financial Services */}
-            <div className="subsidiary-card flex flex-col items-center text-center p-8 relative">
-              <div className="absolute top-5 left-5 h-8 w-8 rounded bg-[#142B4D] flex items-center justify-center text-white shadow-sm">
-                <TrendingUp className="h-4 w-4" />
-              </div>
-
-              <div className="h-20 flex items-center justify-center mt-2 mb-4">
-                <FinancialIcon />
-              </div>
-
-              <h3 className="text-xl font-black text-[#142B4D] leading-snug">
-                Kelvann Financial<br />Services
-              </h3>
-
-              <p className="mt-4 text-xs sm:text-[13px] leading-relaxed text-[#556980] flex-1">
-                The Corporate Arm of Kelvann Group. We provide innovative financial solutions, investment opportunities, and expert advisory services for a stronger tomorrow.
-              </p>
-
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase text-[#00A3E0] hover:text-[#142B4D] transition-colors"
-              >
-                <span>LEARN MORE</span>
-                <span aria-hidden="true">→</span>
-              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. CHAIRMAN'S MESSAGE */}
-      <section id="about-us" className="bg-[#f0f5fa] py-16">
-        <div className="site-container">
-          <h2 className="text-xl sm:text-2xl font-black uppercase text-[#142B4D] tracking-tight mb-8">
-            CHAIRMAN&apos;S MESSAGE
-          </h2>
+      {/* 4. OUR COMPANIES — HORIZONTAL SHOWCASE CAROUSEL (GSAP SCROLLTRIGGER) */}
+      <CompanyShowcase />
 
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-8 bg-transparent">
+      {/* 5. KELVANN KRYSTAL LIMITED FEATURE SPOTLIGHT */}
+      <section className="bg-white py-20 lg:py-24 border-b border-slate-200">
+        <div className="site-container">
+          <div className="rounded-3xl bg-gradient-to-br from-[#061b31] to-[#142B4D] text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00a6e0]/15 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <span>Flagship Operating Subsidiary</span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                  KELVANN KRYSTAL LIMITED
+                </h2>
+
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Kelvann Krystal Limited is the active core operating company of the Kelvann Group. Operating under parent group stewardship, it champions rigorous quality benchmarks, operational precision, and strategic commercial delivery.
+                </p>
+
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <Link
+                    href="/companies/kelvann-krystal"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#00a6e0] hover:bg-[#0090c4] px-7 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all"
+                  >
+                    <span>EXPLORE KELVANN KRYSTAL PROFILE</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white border border-white/20 transition-all"
+                  >
+                    <span>CONTACT THE GROUP</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 relative">
+                <div className="relative rounded-2xl overflow-hidden border-2 border-[#00a6e0]/40 shadow-2xl">
+                  <img
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+                    alt="Kelvann Krystal Limited Flagship Facility"
+                    className="w-full h-64 sm:h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#00a6e0] bg-black/60 px-2.5 py-1 rounded">
+                      CORE OPERATIONAL ARM
+                    </span>
+                    <p className="text-white font-bold text-sm mt-1">
+                      Kelvann Krystal Limited • Established Subsidiary
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. GROUP FUTURE & CORPORATE ECOSYSTEM */}
+      <GroupEcosystem />
+
+      {/* 7. CHAIRMAN'S MESSAGE */}
+      <section className="bg-white py-20 lg:py-24 border-b border-slate-200">
+        <div className="site-container max-w-4xl">
+          <div className="text-center mb-10">
+            <div className="inline-block text-xs font-black uppercase tracking-widest text-[#00a6e0] mb-2">
+              Corporate Leadership
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#142B4D] tracking-tight">
+              CHAIRMAN&apos;S MESSAGE
+            </h2>
+          </div>
+
+          <div className="p-8 sm:p-12 rounded-3xl bg-[#f0f5fa] border border-slate-200 flex flex-col md:flex-row items-start md:items-center gap-8 shadow-sm">
             {/* Portrait Image */}
-            <div className="h-32 w-32 shrink-0 rounded overflow-hidden shadow-sm bg-slate-200">
+            <div className="h-32 w-32 shrink-0 rounded-2xl overflow-hidden shadow-md bg-slate-200 border-2 border-white">
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=85"
                 alt="Chairman Portrait"
@@ -299,14 +236,19 @@ export default function Home() {
 
             {/* Quote */}
             <div className="flex-1 flex items-start gap-4">
-              <span className="quote-symbol select-none">&ldquo;</span>
+              <span className="quote-symbol select-none hidden sm:inline-block">&ldquo;</span>
 
               <div className="space-y-4">
                 <p className="text-sm sm:text-base italic text-[#475569] leading-relaxed">
                   &ldquo;Our commitment remains the foundation of Kelvann Group&apos;s success. Through sustainable practices, innovative solutions, and a dedicated team, we continue to create value for our stakeholders and contribute to a brighter future.&rdquo;
                 </p>
-                <div className="text-sm font-bold text-[#142B4D]">
-                  Chairman&apos;s Message
+                <div className="pt-2 border-t border-slate-200">
+                  <div className="text-sm font-bold text-[#142B4D]">
+                    Chairman of the Board
+                  </div>
+                  <div className="text-xs text-[#00a6e0] font-semibold">
+                    Kelvann Group of Companies Nigeria Limited
+                  </div>
                 </div>
               </div>
 
@@ -316,18 +258,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. LATEST NEWS & UPDATES */}
-      <section className="bg-white py-20 lg:py-24">
+      {/* 8. LATEST NEWS & UPDATES */}
+      <section className="bg-[#f0f5fa] py-20 lg:py-24">
         <div className="site-container">
-          <h2 className="text-center text-2xl sm:text-3xl lg:text-[34px] font-black uppercase text-[#142B4D] tracking-tight mb-14">
-            LATEST NEWS &amp; UPDATES
-          </h2>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="inline-block text-xs font-black uppercase tracking-widest text-[#00a6e0] mb-2">
+              Corporate Intelligence
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-black uppercase text-[#142B4D] tracking-tight">
+              LATEST NEWS &amp; UPDATES
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-slate-500">
+              Recent corporate developments, initiatives, and strategic updates from across the Group.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* News 1 */}
             <article className="news-card flex flex-col overflow-hidden">
               <div
-                className="h-36 w-full bg-cover bg-center"
+                className="h-40 w-full bg-cover bg-center"
                 style={{
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=600&q=80")',
@@ -336,29 +286,29 @@ export default function Home() {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#00A3E0]">
-                    BUSINESS
+                    CORPORATE
                   </span>
                   <h3 className="mt-1.5 text-xs font-black text-[#142B4D] leading-snug">
-                    Kelvann Tech Solutions Northern Logistics &amp; Supply Chain Division Impacts Local Trade, Customers
+                    Kelvann Group Advances Strategic Governance Framework for Group Operations
                   </h3>
                   <p className="mt-2 text-[11px] text-[#64748b] leading-relaxed">
-                    The Northern Logistics &amp; Supply Chain Division of Kelvann Tech Solutions continues to drive economic growth and support local businesses across the region.
+                    The parent organization strengthens oversight systems, setting unified compliance standards.
                   </p>
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  href="/about-us"
                   className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase text-[#00A3E0] hover:text-[#142B4D]"
                 >
-                  <span>LEARN MORE</span>
+                  <span>READ BRIEFING</span>
                   <span aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </article>
 
             {/* News 2 */}
             <article className="news-card flex flex-col overflow-hidden">
               <div
-                className="h-36 w-full bg-cover bg-center"
+                className="h-40 w-full bg-cover bg-center"
                 style={{
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80")',
@@ -366,30 +316,30 @@ export default function Home() {
               />
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#00A3E0]">
-                    BUSINESS
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-600">
+                    SUBSIDIARY
                   </span>
                   <h3 className="mt-1.5 text-xs font-black text-[#142B4D] leading-snug">
-                    Kelvann Real Estate &amp; Property Services Launch Premium Residential Estates
+                    Kelvann Krystal Limited Scales High-Standard Commercial Execution
                   </h3>
                   <p className="mt-2 text-[11px] text-[#64748b] leading-relaxed">
-                    The Real Estate division unveils new residential estates designed for modern living, combining quality, security, and long-term value.
+                    Core operating arm continues to strengthen execution excellence within its operational sectors.
                   </p>
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  href="/companies/kelvann-krystal"
                   className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase text-[#00A3E0] hover:text-[#142B4D]"
                 >
-                  <span>LEARN MORE</span>
+                  <span>EXPLORE SUBSIDIARY</span>
                   <span aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </article>
 
             {/* News 3 */}
             <article className="news-card flex flex-col overflow-hidden">
               <div
-                className="h-36 w-full bg-cover bg-center"
+                className="h-40 w-full bg-cover bg-center"
                 style={{
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80")',
@@ -398,29 +348,29 @@ export default function Home() {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#00A3E0]">
-                    FINANCE
+                    EXPANSION
                   </span>
                   <h3 className="mt-1.5 text-xs font-black text-[#142B4D] leading-snug">
-                    Kelvann Financial Services Expands Access to Flexible Investment Solutions
+                    Kelvann Group Initiates Feasibility Roadmaps for Sector Growth
                   </h3>
                   <p className="mt-2 text-[11px] text-[#64748b] leading-relaxed">
-                    Kelvann Financial Services introduces new investment packages to help individuals and businesses achieve their financial goals.
+                    Corporate development team conducts detailed market assessments for upcoming enterprise verticals.
                   </p>
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  href="/companies"
                   className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase text-[#00A3E0] hover:text-[#142B4D]"
                 >
-                  <span>LEARN MORE</span>
+                  <span>VIEW ROADMAP</span>
                   <span aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </article>
 
             {/* News 4 */}
             <article className="news-card flex flex-col overflow-hidden">
               <div
-                className="h-36 w-full bg-cover bg-center"
+                className="h-40 w-full bg-cover bg-center"
                 style={{
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80")',
@@ -429,168 +379,30 @@ export default function Home() {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#00A3E0]">
-                    CORPORATE
+                    PARTNERSHIPS
                   </span>
                   <h3 className="mt-1.5 text-xs font-black text-[#142B4D] leading-snug">
-                    Kelvann Group Strengthens Partnerships for a Sustainable Future
+                    Kelvann Group Reaffirms Commitment to Sustainable Industry Stewardship
                   </h3>
                   <p className="mt-2 text-[11px] text-[#64748b] leading-relaxed">
-                    The Group reaffirms its commitment to strategic partnerships, innovation, and sustainable growth across all subsidiaries.
+                    The Group fosters strategic stakeholder relationships aimed at creating long-term value.
                   </p>
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase text-[#00A3E0] hover:text-[#142B4D]"
                 >
-                  <span>LEARN MORE</span>
+                  <span>CONNECT WITH US</span>
                   <span aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      {/* 6. FOOTER */}
-      <footer id="contact" className="bg-[#0e213d] text-white">
-        <div className="site-container py-14">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Col 1 */}
-            <div className="space-y-4">
-              <div className="relative h-16 w-52 bg-white/95 rounded-lg p-2.5 shadow-md flex items-center">
-                <img
-                  src="/logo.png"
-                  alt="Kelvann Group Of Companies Nigeria Limited"
-                  className="h-full w-auto object-contain"
-                />
-              </div>
-
-              <div className="space-y-2 text-xs text-slate-300 pt-2">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-[#00A3E0]" />
-                  <span>Kelvann Group Of Companies Nigeria Limited</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-[#00A3E0]" />
-                  <span>+234 811 701 3599</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Col 2: Quick Links */}
-            <div>
-              <h4 className="text-base font-bold text-white mb-4">
-                Quick Links
-              </h4>
-              <ul className="space-y-2 text-xs text-slate-300">
-                <li>
-                  <a href="#" className="hover:text-[#00A3E0] transition-colors flex items-center gap-1.5">
-                    <span>›</span>
-                    <span>Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#about-us" className="hover:text-[#00A3E0] transition-colors flex items-center gap-1.5">
-                    <span>›</span>
-                    <span>About Us</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#our-companies" className="hover:text-[#00A3E0] transition-colors flex items-center gap-1.5">
-                    <span>›</span>
-                    <span>Our Companies</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#careers" className="hover:text-[#00A3E0] transition-colors flex items-center gap-1.5">
-                    <span>›</span>
-                    <span>Careers</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="hover:text-[#00A3E0] transition-colors flex items-center gap-1.5">
-                    <span>›</span>
-                    <span>Contact</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 3: Social Media */}
-            <div>
-              <h4 className="text-base font-bold text-white mb-4">
-                Social Media
-              </h4>
-              <div className="flex items-center gap-2.5">
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="Facebook"
-                >
-                  f
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="X"
-                >
-                  𝕏
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="Instagram"
-                >
-                  ◎
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  in
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="YouTube"
-                >
-                  ▶
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-xs text-white font-bold transition-colors"
-                  aria-label="Pinterest"
-                >
-                  ◉
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
-            <div>&copy; KELVANN GROUP OF COMPANIES NIGERIA LIMITED</div>
-            <div className="flex items-center gap-2">
-              <a href="#" className="h-6 w-6 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-white text-[10px] font-bold">
-                f
-              </a>
-              <a href="#" className="h-6 w-6 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-white text-[10px] font-bold">
-                𝕏
-              </a>
-              <a href="#" className="h-6 w-6 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-white text-[10px] font-bold">
-                ◎
-              </a>
-              <a href="#" className="h-6 w-6 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-white text-[10px] font-bold">
-                in
-              </a>
-              <a href="#" className="h-6 w-6 rounded-full bg-white/10 hover:bg-[#00A3E0] flex items-center justify-center text-white text-[10px] font-bold">
-                ◉
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* 9. SHARED REUSABLE FOOTER */}
+      <Footer />
     </main>
   );
 }
