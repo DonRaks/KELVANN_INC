@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 export const metadata: Metadata = {
   title: "Kelvann Group Of Companies Nigeria Limited | Building the Future of Industry",
@@ -22,6 +23,7 @@ export default function RootLayout({
       </head>
       <body className="bg-white text-[#142B4D] antialiased">
         {children}
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );
