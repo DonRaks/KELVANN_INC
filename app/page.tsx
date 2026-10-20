@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CompanyShowcase from "@/components/CompanyShowcase";
 import GroupEcosystem from "@/components/GroupEcosystem";
+import WorksParallaxShowcase from "@/components/WorksParallaxShowcase";
 import {
   Sparkles,
   ArrowRight,
@@ -39,7 +40,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base sm:text-xl font-normal text-white/95 leading-relaxed">
-            The Corporate Home of Kelvann Group&apos;s Diverse Subsidiaries
+            The Corporate Home of Kelvann Group&apos;s Diverse Subsidiaries • Construction, Oil &amp; Gas, Procurement, Solar Lighting &amp; Global Standards
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -51,13 +52,15 @@ export default function Home() {
               <span aria-hidden="true" className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
             </Link>
 
-            <Link
-              href="/companies/kelvann-krystal"
+            <a
+              href="#works-portfolio"
               className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-6 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all active:scale-95"
             >
-              <span>DISCOVER KELVANN KRYSTAL</span>
-              <ExternalLink className="h-4 w-4 text-[#00A3E0]" />
-            </Link>
+              <span>EXPLORE VERIFIED WORKS</span>
+              <span className="text-[#00A3E0]">↓</span>
+            </a>
+
+            
           </div>
         </div>
       </section>
@@ -147,67 +150,8 @@ export default function Home() {
       {/* 4. OUR COMPANIES — HORIZONTAL SHOWCASE CAROUSEL (GSAP SCROLLTRIGGER) */}
       <CompanyShowcase />
 
-      {/* 5. KELVANN KRYSTAL LIMITED FEATURE SPOTLIGHT */}
-      <section className="bg-white py-20 lg:py-24 border-b border-slate-200">
-        <div className="site-container">
-          <div className="rounded-3xl bg-gradient-to-br from-[#061b31] to-[#142B4D] text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00a6e0]/15 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider">
-                  <CheckCircle2 className="h-3.5 w-3.5" />
-                  <span>Flagship Operating Subsidiary</span>
-                </div>
-
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
-                  KELVANN KRYSTAL LIMITED
-                </h2>
-
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  Kelvann Krystal Limited is the active core operating company of the Kelvann Group. Operating under parent group stewardship, it champions rigorous quality benchmarks, operational precision, and strategic commercial delivery.
-                </p>
-
-                <div className="pt-2 flex flex-wrap gap-4">
-                  <Link
-                    href="/companies/kelvann-krystal"
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#00a6e0] hover:bg-[#0090c4] px-7 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all"
-                  >
-                    <span>EXPLORE KELVANN KRYSTAL PROFILE</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white border border-white/20 transition-all"
-                  >
-                    <span>CONTACT THE GROUP</span>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 relative">
-                <div className="relative rounded-2xl overflow-hidden border-2 border-[#00a6e0]/40 shadow-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
-                    alt="Kelvann Krystal Limited Flagship Facility"
-                    className="w-full h-64 sm:h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#00a6e0] bg-black/60 px-2.5 py-1 rounded">
-                      CORE OPERATIONAL ARM
-                    </span>
-                    <p className="text-white font-bold text-sm mt-1">
-                      Kelvann Krystal Limited • Established Subsidiary
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 5. KELVANN GROUP VERIFIED WORKS & INFRASTRUCTURE SITES (GSAP PARALLAX SHOWCASE) */}
+      <WorksParallaxShowcase />
 
       {/* 6. GROUP FUTURE & CORPORATE ECOSYSTEM */}
       <GroupEcosystem />
