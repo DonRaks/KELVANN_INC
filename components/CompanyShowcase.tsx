@@ -130,32 +130,53 @@ export default function CompanyShowcase() {
                   </div>
 
                   {/* Action Link */}
-                  <div className="pt-3">
+                  <div className="pt-3 flex flex-wrap items-center gap-3">
                     <Link
                       href="/companies/kelvann-krystal"
-                      className="inline-flex items-center gap-3 rounded-xl bg-[#00a6e0] hover:bg-[#0090c4] text-white px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl hover:shadow-[#00a6e0]/30 transition-all active:scale-95 group/btn"
+                      className="inline-flex items-center gap-2.5 rounded-xl bg-[#00a6e0] hover:bg-[#0090c4] text-white px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl hover:shadow-[#00a6e0]/30 transition-all active:scale-95 group/btn"
                     >
-                      <span>EXPLORE KELVANN KRYSTAL PROFILE</span>
+                      <span>EXPLORE SUBSIDIARY</span>
                       <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                    </Link>
+
+                    <Link
+                      href="/companies/kelvann-krystal#works-portfolio"
+                      className="inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#142B4D] px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-all border border-slate-200"
+                    >
+                      <span>VIEW 13 ON-SITE WORKS</span>
+                      <span className="text-[#00a6e0]">➔</span>
                     </Link>
                   </div>
                 </div>
 
                 {/* Right Image */}
                 <div className="lg:col-span-5 relative">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 group/img">
                     <img
-                      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85"
-                      alt="Kelvann Krystal Limited"
-                      className="w-full h-72 sm:h-96 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      src="/works/project-1.jpg"
+                      alt="Kelvann Krystal Limited On-site Asphalt Operations"
+                      className="w-full h-72 sm:h-96 object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                    
+                    {/* Floating Brand Badge */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 backdrop-blur-md shadow-md border border-white/50">
+                      <img
+                        src="/krystal/logo-transparent.png"
+                        alt="Logo"
+                        className="h-6 w-6 object-contain"
+                      />
+                      <span className="text-[11px] font-black text-[#142B4D] uppercase">
+                        Kelvann Krystal
+                      </span>
+                    </div>
+
                     <div className="absolute bottom-5 left-5 right-5 text-white">
                       <div className="text-[10px] font-black uppercase tracking-widest text-[#00a6e0] bg-black/60 px-2.5 py-1 rounded inline-block">
-                        PRIMARY SUBSIDIARY
+                        ACTIVE CIVIL OPERATIONS
                       </div>
                       <p className="font-bold text-sm sm:text-base mt-1.5">
-                        Kelvann Krystal Limited • Established Facility
+                        Mechanized Road Paving &amp; Asphalt Infrastructure
                       </p>
                     </div>
                   </div>
